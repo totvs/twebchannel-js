@@ -1,0 +1,19 @@
+{
+  "name": "@totvs/twebchannel-js",
+  "version": "1.0.0",
+  "description": "",
+  "main": "twebchannel.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/totvs/twebchannel-js.git"
+  },
+  "author": "TOTVS S.A.",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/totvs/twebchannel-js/issues"
+  },
+  "homepage": "https://github.com/totvs/twebchannel-js#readme"
+}
