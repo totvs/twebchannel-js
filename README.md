@@ -1,6 +1,5 @@
 # twebchannel-js
-
-> Implementação simples de comunicacao com o componente AdvPL TWebChannel
+Implementação simples de comunicação com o componente AdvPL TWebChannel.
 
 ## Instalação:
 
@@ -9,8 +8,6 @@ npm install @totvs/twebchannel-js --save
 ```
 
 ## Uso:
-
-### Métodos
 
 #### connect
 Inicia a conexão com o TWebChannel AdvPL 
@@ -24,26 +21,23 @@ Parametros:
 ```
 
 #### jsToAdvpl
-Executa uma chamada para a execucao do bloco de codigo **bJsToAdvpl** do TWebChannel AdvPL.
+Executa uma chamada para a execução do bloco de código **bJsToAdvpl** do TWebChannel AdvPL.
 
 Parametros: 
 * key: string
 * value: string
 
 
-
 ```js
     twebchannel.jsToAdvpl("key", "value");
 ```
 
-### Propriedades
-
 #### advplToJs
-Funcao que é executada ao receber uma chamada do metodo advplToJs
+Função que é executada ao receber uma chamada do metodo **advplToJs** do TWebChannel AdvPL.
 
 Tipo: Function
 
-Parametros: 
+Parâmetros: 
 * key: string
 * value: string
 
