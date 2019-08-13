@@ -25,23 +25,35 @@ var twebchannel = {
 		var port = this.getParam('totvstec_websocket_port'),
 			remoteType = this.getParam('totvstec_remote_type');
 
+		this.origin = this.getParam('totvstec_remote_type');
+
+		if ((this.origin === null) || (this.origin === ''))
+			this.origin = '*'
+
 		this.init(port, remoteType, callback);
 	},
 
 
-    getParam: function(queryField) {
-        var url = window.location.href;
-        queryField = queryField.replace(/[\[\]]/g, "\\$&");
-        var regex = new RegExp("[?&]" + queryField + "(=([^&#]*)|&|#|$)", "i"),
-                results = regex.exec(url);
-        if (!results) return null;
-        if (!results[2]) return '';
-        return decodeURIComponent(results[2].replace(/\+/g, " "));
-    },
+	getParam: function(queryField) {
+		var url = window.location.href;
+		queryField = queryField.replace(/[\[\]]/g, "\\$&");
+
+		var regex = new RegExp("[?&]" + queryField + "(=([^&#]*)|&|#|$)", "i"),
+			results = regex.exec(url);
+
+		if (!results)
+			return null;
+
+		if (!results[2])
+			return '';
+
+		return decodeURIComponent(results[2].replace(/\+/g, " "));
+	},
 
 	init: function(port, remoteType, callback) {
 		this.internalPort = Number(port);
-		this.remoteType = Number(remoteType)
+		this.remoteType = Number(remoteType);
+
 
 		var fireEvent = function() {
 			var event = new CustomEvent('twebchannelready');
@@ -99,23 +111,6 @@ var twebchannel = {
 
 	onReceiveAdvplToJs: function(key, value) {
 		this.advplToJs(key, value);
-		/*
-		if (key == "js") {
-			var fileref = document.createElement('script');
-			fileref.setAttribute("type", "text/javascript");
-			fileref.innerText = value;
-
-			document.getElementsByTagName("head")[0].appendChild(fileref);
-		}
-		else if (key == "css") {
-			var linkref = document.createElement("link");
-			linkref.setAttribute("rel", "stylesheet");
-			linkref.setAttribute("type", "text/css");
-			linkref.innerText = value;
-
-			document.getElementsByTagName("head")[0].appendChild(linkref);
-		}
-		*/
 	},
 
 	connectMessageChannel: function(callback) {
@@ -172,7 +167,7 @@ var twebchannel = {
 		window.parent.postMessage({
 			type: 'CONNECT',
 			port: this.internalPort
-		}, window.location.origin, [this.channel.port2]);
+		}, this.origin, [this.channel.port2]);
 	},
 
 	sendMessageChannel: function(key, value) {
