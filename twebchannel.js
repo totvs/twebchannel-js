@@ -8,7 +8,7 @@ function QObject(e, n, t) { function o(e, n) { var o = e[0], r = e[1]; i[o] = { 
 
 var twebchannel = {
 	// Versao
-	version: "1.0.1",
+	version: "1.0.2",
 
 	// Porta do WebSocket
 	internalPort: 0,
@@ -25,10 +25,14 @@ var twebchannel = {
 		var port = this.getParam('totvstec_websocket_port'),
 			remoteType = this.getParam('totvstec_remote_type');
 
-		this.origin = this.getParam('totvstec_remote_type');
+		this.origin = this.getParam('totvstec_remote_origin');
 
-		if ((this.origin === null) || (this.origin === ''))
+		if ((this.origin === null) || (this.origin === '')) {
 			this.origin = '*'
+		}
+		else {
+			this.origin = decodeURIComponent(this.origin);
+		}
 
 		this.init(port, remoteType, callback);
 	},
