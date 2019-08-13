@@ -8,7 +8,7 @@ function QObject(e, n, t) { function o(e, n) { var o = e[0], r = e[1]; i[o] = { 
 
 var twebchannel = {
 	// Versao
-	version: "1.0.0",
+	version: "1.0.1",
 
 	// Porta do WebSocket
 	internalPort: 0,
