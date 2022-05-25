@@ -47,7 +47,7 @@ window.onmessage = function(event) {
 
 var twebchannel = {
 	// Versao
-	version: "1.0.3",
+	version: "1.0.4",
 
 	// Porta do WebSocket
 	internalPort: 0,
@@ -62,15 +62,16 @@ var twebchannel = {
 
 	connect: function(callback) {
 		var port = getParam('totvstec_websocket_port'),
-			remoteType = getParam('totvstec_remote_type');
+			remoteType = getParam('totvstec_remote_type'),
+			threadId = getParam('totvstec_threadId');
 
-		this.init(port, remoteType, callback);
+		this.init(port, remoteType, threadId, callback);
 	},
 
-	init: function(port, remoteType, callback) {
+	init: function(port, remoteType, threadId, callback) {
 		this.internalPort = Number(port);
 		this.remoteType = Number(remoteType);
-
+		this.threadId = threadId;
 
 		var fireEvent = function() {
 			var event = new CustomEvent('twebchannelready');
@@ -172,7 +173,8 @@ var twebchannel = {
 
 		window.parent.postMessage({
 			type: 'CONNECT',
-			port: this.internalPort
+			port: this.internalPort,
+			threadId: this.threadId
 		}, origin, [this.channel.port2]);
 	},
 
